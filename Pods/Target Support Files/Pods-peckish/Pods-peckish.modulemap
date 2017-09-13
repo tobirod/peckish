@@ -1,0 +1,6 @@
+framework module Pods_peckish {
+  umbrella header "Pods-peckish-umbrella.h"
+
+  export *
+  module * { export * }
+}

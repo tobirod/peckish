@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>825494406890-a88sd4h8gd50e45binvhauk1moqpdqgh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.825494406890-a88sd4h8gd50e45binvhauk1moqpdqgh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAlmLd1_3U0eyO6Uhi9vUotYv7aU4B8R9g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>825494406890</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>TR.peckish</string>
+	<key>PROJECT_ID</key>
+	<string>peckish-ee4ec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>peckish-ee4ec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:825494406890:ios:e50558943da71b82</string>
+	<key>DATABASE_URL</key>
+	<string>https://peckish-ee4ec.firebaseio.com</string>
+</dict>
+</plist>
