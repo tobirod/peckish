@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E193DF11F6A877100A002DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E193DF01F6A877100A002DE /* GoogleService-Info.plist */; };
 		1E1CA16A1F693A5700918714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CA1691F693A5700918714 /* AppDelegate.swift */; };
 		1E1CA16C1F693A5700918714 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CA16B1F693A5700918714 /* ViewController.swift */; };
 		1E1CA16F1F693A5700918714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1CA16D1F693A5700918714 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E193DF01F6A877100A002DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E1CA1661F693A5700918714 /* peckish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = peckish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1CA1691F693A5700918714 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E1CA16B1F693A5700918714 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		1E1CA1681F693A5700918714 /* peckish */ = {
 			isa = PBXGroup;
 			children = (
+				1E193DF01F6A877100A002DE /* GoogleService-Info.plist */,
 				1E1CA1691F693A5700918714 /* AppDelegate.swift */,
 				1E1CA16B1F693A5700918714 /* ViewController.swift */,
 				1E1CA16D1F693A5700918714 /* Main.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1CA1741F693A5700918714 /* LaunchScreen.storyboard in Resources */,
+				1E193DF11F6A877100A002DE /* GoogleService-Info.plist in Resources */,
 				1E1CA1711F693A5700918714 /* Assets.xcassets in Resources */,
 				1E1CA16F1F693A5700918714 /* Main.storyboard in Resources */,
 			);
@@ -594,6 +598,7 @@
 				1E1CA1901F693A5700918714 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1CA1911F693A5700918714 /* Build configuration list for PBXNativeTarget "peckishTests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +607,7 @@
 				1E1CA1931F693A5700918714 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1CA1941F693A5700918714 /* Build configuration list for PBXNativeTarget "peckishUITests" */ = {
 			isa = XCConfigurationList;
@@ -610,6 +616,7 @@
 				1E1CA1961F693A5700918714 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
