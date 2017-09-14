@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecipeTapped))
         
         tableView.tableFooterView = UIView()
     }
@@ -26,9 +26,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addTapped() {
+    func addNewRecipeTapped() {
         
-        print("bubba")
+        self.performSegue(withIdentifier: "NewRecipeViewController", sender: Any?.self)
         
     }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E193DF11F6A877100A002DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E193DF01F6A877100A002DE /* GoogleService-Info.plist */; };
+		1E193DF71F6AB62000A002DE /* NewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E193DF61F6AB62000A002DE /* NewRecipeViewController.swift */; };
 		1E1CA16A1F693A5700918714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CA1691F693A5700918714 /* AppDelegate.swift */; };
 		1E1CA16C1F693A5700918714 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CA16B1F693A5700918714 /* ViewController.swift */; };
 		1E1CA16F1F693A5700918714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1CA16D1F693A5700918714 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		1E193DF01F6A877100A002DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E193DF61F6AB62000A002DE /* NewRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecipeViewController.swift; sourceTree = "<group>"; };
 		1E1CA1661F693A5700918714 /* peckish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = peckish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1CA1691F693A5700918714 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E1CA16B1F693A5700918714 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				1E1CA1691F693A5700918714 /* AppDelegate.swift */,
 				1E1CA16B1F693A5700918714 /* ViewController.swift */,
 				1E1CA16D1F693A5700918714 /* Main.storyboard */,
+				1E193DF61F6AB62000A002DE /* NewRecipeViewController.swift */,
 				1E1CA1701F693A5700918714 /* Assets.xcassets */,
 				1E1CA1721F693A5700918714 /* LaunchScreen.storyboard */,
 				1E1CA1751F693A5700918714 /* Info.plist */,
@@ -350,6 +353,7 @@
 			files = (
 				1E1CA16C1F693A5700918714 /* ViewController.swift in Sources */,
 				1E1CA16A1F693A5700918714 /* AppDelegate.swift in Sources */,
+				1E193DF71F6AB62000A002DE /* NewRecipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
