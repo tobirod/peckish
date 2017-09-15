@@ -19,10 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        UINavigationBar.appearance().barTintColor = UIColor.lightGray
-        UINavigationBar.appearance().tintColor = UIColor.black
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black]
-        
         return true
     }
 

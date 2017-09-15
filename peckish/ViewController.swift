@@ -16,9 +16,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecipeTapped))
+        // navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewRecipeTapped))
         
-        tableView.tableFooterView = UIView()
+        // tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,12 +26,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addNewRecipeTapped() {
-        
-        self.performSegue(withIdentifier: "NewRecipeViewController", sender: Any?.self)
-        
+    @IBAction func addRecipeButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "addNewRecipeSegue", sender: Any?.self)
     }
-
 
 }
 
