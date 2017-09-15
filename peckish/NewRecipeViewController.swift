@@ -38,8 +38,8 @@ class NewRecipeViewController: UIViewController {
         
         categoryTextField.inputView = categoryPicker
         
-        // Customization
         
+        // Customization
         categoryPicker.backgroundColor = .white
         
     }
@@ -68,7 +68,7 @@ class NewRecipeViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
         
     }
     
@@ -106,6 +106,8 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
             label = UILabel()
         }
         
+        
+        // Customization
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "American TypeWriter", size: 17)
