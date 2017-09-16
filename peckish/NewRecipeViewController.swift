@@ -40,8 +40,8 @@ class NewRecipeViewController: UIViewController {
         
         
         // Customization
-        categoryPicker.backgroundColor = .white
-        
+        categoryPicker.backgroundColor = UIColor.clear
+        //categoryPicker.backgroundColor = UIColor.black.withAlphaComponent(0.1)
     }
     
     func createPickerViewToolBar() {
@@ -50,13 +50,16 @@ class NewRecipeViewController: UIViewController {
         pickerViewToolBar.sizeToFit()
         
         // Customization
-        pickerViewToolBar.barTintColor = .white
-        pickerViewToolBar.tintColor = .black
+        pickerViewToolBar.barTintColor = .black
+        pickerViewToolBar.tintColor = .white
+        pickerViewToolBar.alpha = 0.5
         
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(NewRecipeViewController.dismissKeyboard))
+
         
         pickerViewToolBar.setItems([doneButton], animated: false)
         pickerViewToolBar.isUserInteractionEnabled = true
+        pickerViewToolBar.isTranslucent = true
         
         categoryTextField.inputAccessoryView = pickerViewToolBar
         
@@ -110,7 +113,8 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         // Customization
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "American TypeWriter", size: 17)
+        label.font = UIFont(name: "American TypeWriter", size: 45)
+        label.backgroundColor = UIColor.clear
         
         label.text = recipeCategories[row]
         
