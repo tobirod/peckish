@@ -41,6 +41,16 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-75-pZt">
                                         <rect key="frame" x="5" y="141" width="365" height="451"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="vxX-r1-7bA">
+                                                <rect key="frame" x="0.0" y="28" width="365" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vxX-r1-7bA" id="BIr-HZ-BmQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m7-ia-gF6" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
                                         <rect key="frame" x="157.5" y="597" width="60" height="60"/>
@@ -115,79 +125,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-4x-cm5">
-                                <rect key="frame" x="0.0" y="40" width="375" height="617"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Zd-QkD">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select category" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-oa-mOB" customClass="RoundTextField" customModule="peckish" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="0.0" width="225" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="0.80051369863013699" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="92O-HY-5tw"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="w2C-G6-Y0b" userLabel="Image Stack View">
-                                        <rect key="frame" x="5" y="60" width="365" height="229"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-4x-cm5">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="nopicadded" translatesAutoresizingMaskIntoConstraints="NO" id="6b1-8O-uWt" customClass="RoundImageView" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="31" y="0.0" width="303" height="169"/>
-                                                <color key="backgroundColor" white="1" alpha="0.80118257705479456" colorSpace="calibratedWhite"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3M-tk-gHV" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="75" y="179" width="215" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.80008561643835618" colorSpace="calibratedWhite"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select category" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-oa-mOB" customClass="RoundTextField" customModule="peckish" customModuleProvider="target">
+                                                <rect key="frame" x="75" y="0.0" width="225" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="0.80051369863013699" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="KhS-TM-Won"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <state key="normal" title="Add image"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="g3M-tk-gHV" secondAttribute="bottom" id="6rX-Ma-0cO"/>
-                                            <constraint firstItem="6b1-8O-uWt" firstAttribute="top" secondItem="w2C-G6-Y0b" secondAttribute="top" id="715-Xc-bbJ"/>
-                                            <constraint firstItem="g3M-tk-gHV" firstAttribute="top" secondItem="6b1-8O-uWt" secondAttribute="bottom" constant="10" id="HyZ-GB-oDm"/>
-                                            <constraint firstAttribute="trailing" secondItem="6b1-8O-uWt" secondAttribute="trailing" constant="31" id="elS-I3-bmY"/>
-                                            <constraint firstItem="g3M-tk-gHV" firstAttribute="leading" secondItem="w2C-G6-Y0b" secondAttribute="leading" constant="75" id="fk1-a1-YTT"/>
-                                            <constraint firstAttribute="trailing" secondItem="g3M-tk-gHV" secondAttribute="trailing" constant="75" id="ioD-h0-LP1"/>
-                                            <constraint firstItem="6b1-8O-uWt" firstAttribute="leading" secondItem="w2C-G6-Y0b" secondAttribute="leading" constant="31" id="wP1-Oq-mA5"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qSm-5U-pyh" userLabel="Text Stack View">
-                                        <rect key="frame" x="5" y="299" width="365" height="258"/>
-                                        <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAz-KN-QYz" customClass="RoundTextField" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.80300192636986301" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="VZu-vs-ajC"/>
+                                                    <constraint firstAttribute="height" constant="50" id="92O-HY-5tw"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
@@ -201,101 +149,185 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DYg-cq-YPQ" customClass="RoundTextView" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="60" width="365" height="198"/>
-                                                <color key="backgroundColor" white="1" alpha="0.80420590753424659" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="w2C-G6-Y0b" userLabel="Image Stack View">
+                                                <rect key="frame" x="5" y="60" width="365" height="229"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="nopicadded" translatesAutoresizingMaskIntoConstraints="NO" id="6b1-8O-uWt" customClass="RoundImageView" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="31" y="0.0" width="303" height="169"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.80118257705479456" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="169" id="ols-Fw-NnZ"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3M-tk-gHV" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="75" y="179" width="215" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.80008561643835618" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="KhS-TM-Won"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Add image"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="g3M-tk-gHV" secondAttribute="bottom" id="6rX-Ma-0cO"/>
+                                                    <constraint firstItem="6b1-8O-uWt" firstAttribute="top" secondItem="w2C-G6-Y0b" secondAttribute="top" id="715-Xc-bbJ"/>
+                                                    <constraint firstItem="g3M-tk-gHV" firstAttribute="top" secondItem="6b1-8O-uWt" secondAttribute="bottom" constant="10" id="HyZ-GB-oDm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6b1-8O-uWt" secondAttribute="trailing" constant="31" id="elS-I3-bmY"/>
+                                                    <constraint firstItem="g3M-tk-gHV" firstAttribute="leading" secondItem="w2C-G6-Y0b" secondAttribute="leading" constant="75" id="fk1-a1-YTT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="g3M-tk-gHV" secondAttribute="trailing" constant="75" id="ioD-h0-LP1"/>
+                                                    <constraint firstItem="6b1-8O-uWt" firstAttribute="leading" secondItem="w2C-G6-Y0b" secondAttribute="leading" constant="31" id="wP1-Oq-mA5"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qSm-5U-pyh" userLabel="Text Stack View">
+                                                <rect key="frame" x="5" y="299" width="365" height="258"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAz-KN-QYz" customClass="RoundTextField" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.80300192636986301" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="VZu-vs-ajC"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DYg-cq-YPQ" customClass="RoundTextView" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="60" width="365" height="198"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.80420590753424659" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="198" id="C5o-aJ-X5V"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="XAz-KN-QYz" secondAttribute="trailing" id="1I7-g8-wQZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DYg-cq-YPQ" secondAttribute="trailing" id="Aa4-FS-15J"/>
+                                                    <constraint firstItem="DYg-cq-YPQ" firstAttribute="top" secondItem="XAz-KN-QYz" secondAttribute="bottom" constant="10" id="Mhe-kM-ANi"/>
+                                                    <constraint firstItem="DYg-cq-YPQ" firstAttribute="leading" secondItem="qSm-5U-pyh" secondAttribute="leading" id="MvE-Zh-XZ7"/>
+                                                    <constraint firstItem="XAz-KN-QYz" firstAttribute="top" secondItem="qSm-5U-pyh" secondAttribute="top" id="YUY-hL-7Ro"/>
+                                                    <constraint firstItem="XAz-KN-QYz" firstAttribute="leading" secondItem="qSm-5U-pyh" secondAttribute="leading" id="dIc-67-h6Q"/>
+                                                    <constraint firstAttribute="bottom" secondItem="DYg-cq-YPQ" secondAttribute="bottom" id="wGt-4A-AIB"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" tag="10" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R76-xa-8YA" userLabel="Button Stack View">
+                                                <rect key="frame" x="5" y="567" width="365" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vO-ZU-5ZZ" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="177.5" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.80016588184931503" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="w1a-Te-UXo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Cancel"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="cancelButtonPressed:" destination="CcB-7b-8c2" eventType="touchUpInside" id="iH7-Um-ndh"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CtY-lL-yVo" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
+                                                        <rect key="frame" x="187.5" y="0.0" width="177.5" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.8006742294520548" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="0ez-d2-TcS"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Add recipe"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="XAz-KN-QYz" secondAttribute="trailing" id="1I7-g8-wQZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="DYg-cq-YPQ" secondAttribute="trailing" id="Aa4-FS-15J"/>
-                                            <constraint firstItem="DYg-cq-YPQ" firstAttribute="top" secondItem="XAz-KN-QYz" secondAttribute="bottom" constant="10" id="Mhe-kM-ANi"/>
-                                            <constraint firstItem="DYg-cq-YPQ" firstAttribute="leading" secondItem="qSm-5U-pyh" secondAttribute="leading" id="MvE-Zh-XZ7"/>
-                                            <constraint firstItem="XAz-KN-QYz" firstAttribute="top" secondItem="qSm-5U-pyh" secondAttribute="top" id="YUY-hL-7Ro"/>
-                                            <constraint firstItem="XAz-KN-QYz" firstAttribute="leading" secondItem="qSm-5U-pyh" secondAttribute="leading" id="dIc-67-h6Q"/>
-                                            <constraint firstAttribute="bottom" secondItem="DYg-cq-YPQ" secondAttribute="bottom" id="wGt-4A-AIB"/>
+                                            <constraint firstItem="R76-xa-8YA" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="413-fs-YQj"/>
+                                            <constraint firstItem="6T8-oa-mOB" firstAttribute="top" secondItem="wdP-4x-cm5" secondAttribute="top" id="JWw-nR-TGj"/>
+                                            <constraint firstItem="w2C-G6-Y0b" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="MYa-eH-01S"/>
+                                            <constraint firstAttribute="trailing" secondItem="qSm-5U-pyh" secondAttribute="trailing" constant="5" id="Nfq-Fl-REE"/>
+                                            <constraint firstItem="qSm-5U-pyh" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="O7L-EQ-V57"/>
+                                            <constraint firstAttribute="trailing" secondItem="R76-xa-8YA" secondAttribute="trailing" constant="5" id="QaB-67-D0w"/>
+                                            <constraint firstAttribute="trailing" secondItem="6T8-oa-mOB" secondAttribute="trailing" constant="75" id="Xai-8h-51a"/>
+                                            <constraint firstItem="6T8-oa-mOB" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="75" id="j7V-Us-ZL9"/>
+                                            <constraint firstAttribute="trailing" secondItem="w2C-G6-Y0b" secondAttribute="trailing" constant="5" id="yOh-gT-OwN"/>
+                                            <constraint firstItem="w2C-G6-Y0b" firstAttribute="top" secondItem="6T8-oa-mOB" secondAttribute="bottom" constant="10" id="yrB-tb-Knv"/>
                                         </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" tag="10" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R76-xa-8YA" userLabel="Button Stack View">
-                                        <rect key="frame" x="5" y="567" width="365" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vO-ZU-5ZZ" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="177.5" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.80016588184931503" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="w1a-Te-UXo"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <state key="normal" title="Cancel"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="cancelButtonPressed:" destination="CcB-7b-8c2" eventType="touchUpInside" id="iH7-Um-ndh"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CtY-lL-yVo" customClass="RoundButton" customModule="peckish" customModuleProvider="target">
-                                                <rect key="frame" x="187.5" y="0.0" width="177.5" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.8006742294520548" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="0ez-d2-TcS"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <state key="normal" title="Add recipe"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="R76-xa-8YA" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="413-fs-YQj"/>
-                                    <constraint firstItem="6T8-oa-mOB" firstAttribute="top" secondItem="wdP-4x-cm5" secondAttribute="top" id="JWw-nR-TGj"/>
-                                    <constraint firstItem="w2C-G6-Y0b" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="MYa-eH-01S"/>
-                                    <constraint firstAttribute="trailing" secondItem="qSm-5U-pyh" secondAttribute="trailing" constant="5" id="Nfq-Fl-REE"/>
-                                    <constraint firstItem="qSm-5U-pyh" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="5" id="O7L-EQ-V57"/>
-                                    <constraint firstAttribute="trailing" secondItem="R76-xa-8YA" secondAttribute="trailing" constant="5" id="QaB-67-D0w"/>
-                                    <constraint firstAttribute="trailing" secondItem="6T8-oa-mOB" secondAttribute="trailing" constant="75" id="Xai-8h-51a"/>
-                                    <constraint firstItem="6T8-oa-mOB" firstAttribute="leading" secondItem="wdP-4x-cm5" secondAttribute="leading" constant="75" id="j7V-Us-ZL9"/>
-                                    <constraint firstAttribute="trailing" secondItem="w2C-G6-Y0b" secondAttribute="trailing" constant="5" id="yOh-gT-OwN"/>
-                                    <constraint firstItem="w2C-G6-Y0b" firstAttribute="top" secondItem="6T8-oa-mOB" secondAttribute="bottom" constant="10" id="yrB-tb-Knv"/>
+                                    <constraint firstItem="wdP-4x-cm5" firstAttribute="width" secondItem="EIn-Zd-QkD" secondAttribute="width" id="54n-yh-mj9"/>
+                                    <constraint firstItem="wdP-4x-cm5" firstAttribute="top" secondItem="EIn-Zd-QkD" secondAttribute="top" id="5jA-zG-3GB"/>
+                                    <constraint firstItem="wdP-4x-cm5" firstAttribute="height" secondItem="EIn-Zd-QkD" secondAttribute="height" priority="250" id="MOo-fK-z8n"/>
+                                    <constraint firstAttribute="trailing" secondItem="wdP-4x-cm5" secondAttribute="trailing" id="Zdv-2M-WL8"/>
+                                    <constraint firstAttribute="bottom" secondItem="wdP-4x-cm5" secondAttribute="bottom" id="l8s-Cm-q8x"/>
+                                    <constraint firstItem="wdP-4x-cm5" firstAttribute="leading" secondItem="EIn-Zd-QkD" secondAttribute="leading" id="z1l-KT-lQX"/>
                                 </constraints>
-                            </stackView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wdP-4x-cm5" firstAttribute="leading" secondItem="qXE-wk-man" secondAttribute="leading" id="3gd-2v-ha1"/>
-                            <constraint firstItem="wdP-4x-cm5" firstAttribute="top" secondItem="qXE-wk-man" secondAttribute="top" constant="40" id="NzQ-98-uhT"/>
-                            <constraint firstItem="wdP-4x-cm5" firstAttribute="trailing" secondItem="qXE-wk-man" secondAttribute="trailing" id="cj4-Uj-bWf"/>
-                            <constraint firstItem="tll-LH-Bat" firstAttribute="top" secondItem="wdP-4x-cm5" secondAttribute="bottom" constant="10" id="fsU-98-KaD"/>
+                            <constraint firstAttribute="trailing" secondItem="EIn-Zd-QkD" secondAttribute="trailing" id="PHE-FN-x8w"/>
+                            <constraint firstItem="EIn-Zd-QkD" firstAttribute="top" secondItem="VsC-8n-0WB" secondAttribute="bottom" id="dVd-f6-DkZ"/>
+                            <constraint firstItem="EIn-Zd-QkD" firstAttribute="leading" secondItem="qXE-wk-man" secondAttribute="leading" id="mmJ-2N-gnv"/>
+                            <constraint firstAttribute="bottom" secondItem="EIn-Zd-QkD" secondAttribute="bottom" id="yyn-Ri-x1d"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="categoryTextField" destination="6T8-oa-mOB" id="xJO-rp-RQT"/>
+                        <outlet property="recipeImageView" destination="6b1-8O-uWt" id="J2f-ge-7NT"/>
+                        <outlet property="recipeNameTextField" destination="XAz-KN-QYz" id="8QI-6w-T8U"/>
+                        <outlet property="recipeTextView" destination="DYg-cq-YPQ" id="N67-XH-2AV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzO-iD-fTn" userLabel="First Responder" sceneMemberID="firstResponder"/>

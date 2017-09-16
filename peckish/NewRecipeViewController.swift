@@ -10,8 +10,10 @@ import UIKit
 
 class NewRecipeViewController: UIViewController {
 
-    @IBOutlet weak var recipeCategoryPickerView: UIPickerView!
     @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var recipeImageView: RoundImageView!
+    @IBOutlet weak var recipeNameTextField: RoundTextField!
+    @IBOutlet weak var recipeTextView: RoundTextView!
     
     var selectedCategory: String?
     
@@ -40,8 +42,7 @@ class NewRecipeViewController: UIViewController {
         
         
         // Customization
-        categoryPicker.backgroundColor = UIColor.clear
-        //categoryPicker.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        categoryPicker.backgroundColor = .white
     }
     
     func createPickerViewToolBar() {
@@ -50,16 +51,19 @@ class NewRecipeViewController: UIViewController {
         pickerViewToolBar.sizeToFit()
         
         // Customization
-        pickerViewToolBar.barTintColor = .black
+        pickerViewToolBar.barTintColor = UIColor.darkGray
         pickerViewToolBar.tintColor = .white
-        pickerViewToolBar.alpha = 0.5
         
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(NewRecipeViewController.dismissKeyboard))
 
         
+        if let font = UIFont(name: "American Typewriter", size: 20.0) {
+            let attributes = [NSFontAttributeName: font]
+            doneButton.setTitleTextAttributes(attributes, for: .normal)
+        }
+        
         pickerViewToolBar.setItems([doneButton], animated: false)
         pickerViewToolBar.isUserInteractionEnabled = true
-        pickerViewToolBar.isTranslucent = true
         
         categoryTextField.inputAccessoryView = pickerViewToolBar
         
@@ -113,8 +117,7 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         // Customization
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "American TypeWriter", size: 45)
-        label.backgroundColor = UIColor.clear
+        label.font = UIFont(name: "American Typewriter", size: 30)
         
         label.text = recipeCategories[row]
         
