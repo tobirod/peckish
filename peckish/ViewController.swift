@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        // tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
         
             let recipe = RecipeModel(id: self.recipeCollection.count, categoryType: .breakfast, name: "Gröt", text: "1 dl havregryn, 2 dl vatten")
             let recipe2 = RecipeModel(id: self.recipeCollection.count, categoryType: .lunch, name: "Kycklingsallad", text: "1 dl havregryn, 2 dl vatten")
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
             let recipe4 = RecipeModel(id: self.recipeCollection.count, categoryType: .dessert, name: "Ostbågar", text: "1 dl havregryn, 2 dl vatten")
             let recipe5 = RecipeModel(id: self.recipeCollection.count, categoryType: .drinks, name: "Kiss", text: "1 dl havregryn, 2 dl vatten")
             let recipe6 = RecipeModel(id: self.recipeCollection.count, categoryType: .snack, name: "Chokladbollar", text: "1 dl havregryn, 2 dl vatten")
+        let recipe7 = RecipeModel(id: self.recipeCollection.count, categoryType: .snack, name: "Chokladbollar", text: "1 dl havregryn, 2 dl vatten")
 
         
         self.recipeCollection.append(recipe)
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
         self.recipeCollection.append(recipe4)
         self.recipeCollection.append(recipe5)
         self.recipeCollection.append(recipe6)
+        self.recipeCollection.append(recipe7)
     }
 
     override func didReceiveMemoryWarning() {

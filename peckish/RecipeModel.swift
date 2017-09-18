@@ -34,7 +34,7 @@ class RecipeModel {
     var categoryType: CategoryType
     var name: String
     var text: String
-    //var image: UIImage?
+    //var imagePath: ImagePath?
     
     init(id: Int, categoryType: CategoryType, name: String, text: String) {
         
@@ -42,6 +42,7 @@ class RecipeModel {
         self.categoryType = categoryType
         self.name = name
         self.text = text
+        //self.imagePath = imagePath
         
     }
     

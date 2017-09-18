@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 
 class NewRecipeViewController: UIViewController {
 
@@ -15,7 +17,10 @@ class NewRecipeViewController: UIViewController {
     @IBOutlet weak var recipeNameTextField: RoundTextField!
     @IBOutlet weak var recipeTextView: RoundTextView!
     
-    var selectedCategory: String?
+    var databaseRef: DatabaseReference?
+    var storageRef: StorageReference?
+    
+    var selectedCategory: String = ""
     
     let recipeCategories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Snack", "Drink"]
     
@@ -70,6 +75,22 @@ class NewRecipeViewController: UIViewController {
     }
     
     func dismissKeyboard() {
+        
+//        if selectedCategory != "" {
+//            
+//            switch selectedCategory {
+//            case "Breakfast" : categoryBuffer = ".breakfast"
+//            case "Lunch" : categoryBuffer = ".lunch"
+//            case "Dinner" : categoryBuffer = ".dinner"
+//            case "Dessert" : categoryBuffer = ".dessert"
+//            case "Snack" : categoryBuffer = ".snack"
+//            case "Drink" : categoryBuffer = ".drink"
+//                
+//            default : selectedCategory = "unavailable"
+//            }
+//            
+//        }
+        
         view.endEditing(true)
     }
     
@@ -78,6 +99,47 @@ class NewRecipeViewController: UIViewController {
         self.dismiss(animated: true)
         
     }
+    
+    @IBAction func addRecipeButtonPressed(_ sender: Any) {
+        
+        // Upload content of imageView
+        
+        databaseRef = Database.database().reference()
+        storageRef = Storage.storage().reference().child("recipe_images/" + recipeNameTextField.text!)
+        
+        
+        if let uploadData = UIImagePNGRepresentation(self.recipeImageView.image!) {
+            
+            let uploadMetadata = StorageMetadata()
+            uploadMetadata.contentType = "image/png"
+            
+            self.storageRef?.putData(uploadData, metadata: uploadMetadata, completion: { (metadata, error) in
+                if (error != nil) {
+                    print("I recieved an error! \(String(describing: error?.localizedDescription)))")
+                } else {
+                    print("Upload complete! Here's some metadata! \(String(describing: metadata))")
+                }
+            })
+        }
+        
+        // Upload recipe details as a NSDictionary
+        
+        if recipeNameTextField.text != "" {
+            
+            let recipeToDictionary: NSDictionary = [
+                
+                "categoryType" : selectedCategory,
+                "name" : recipeNameTextField.text ?? "Unavailable",
+                "text" : recipeTextView.text
+            ]
+            
+            self.databaseRef?.child("recipe").childByAutoId().setValue(recipeToDictionary)
+            
+        }
+        
+        self.dismiss(animated: true)
+    }
+    
     
 
 }
@@ -123,6 +185,36 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         
         return label
         
+    }
+    
+}
+
+// MARK: - Import Image Extension
+
+extension NewRecipeViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @IBAction func importImageButton(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        
+        image.allowsEditing = false
+        
+        self.present(image, animated: true) {
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            recipeImageView.image = image
+            recipeImageView.alpha = 1
+        } else {
+            // Error message
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
