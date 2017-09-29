@@ -201,6 +201,7 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         }
         
         categoryTextField.text = "Breakfast"
+        selectedCategory = "Breakfast"
         
         
         // Customization

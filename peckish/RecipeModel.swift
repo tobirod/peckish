@@ -15,6 +15,7 @@ enum CategoryType: Int {
     case dessert
     case snack
     case drinks
+    case unknown
     
     var description: String {
         switch self {
@@ -24,6 +25,7 @@ enum CategoryType: Int {
         case .dessert: return "dessert"
         case .snack: return "snack"
         case .drinks: return "drinks"
+        case .unknown: return "unknown"
         }
     }
 }
@@ -34,15 +36,15 @@ class RecipeModel {
     var categoryType: CategoryType
     var name: String
     var text: String
-    //var imagePath: ImagePath?
+    var imageURL: URL
     
-    init(id: Int, categoryType: CategoryType, name: String, text: String) {
+    init(id: Int, categoryType: CategoryType, name: String, text: String, imageURL: URL) {
         
         self.id = id
         self.categoryType = categoryType
         self.name = name
         self.text = text
-        //self.imagePath = imagePath
+        self.imageURL = imageURL
         
     }
     

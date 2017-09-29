@@ -36,45 +36,36 @@ class ViewController: UIViewController {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
-                let categoryTypeBuffer: CategoryType
-                let categoryTypeBuffers = dictionary["categoryType"] as! String
+                var categoryTypeBuffer: CategoryType = .unknown
+                let imagePathBuffer: URL
                 
-                switch categoryTypeBuffers {
+                if let category = dictionary["categoryType"] as? String {
+                    
+                    switch category {
                     case "Breakfast": categoryTypeBuffer = .breakfast
                     case "Lunch": categoryTypeBuffer = .lunch
                     case "Dinner": categoryTypeBuffer = .dinner
                     case "Dessert": categoryTypeBuffer = .dessert
                     case "Drink": categoryTypeBuffer = .drinks
                     case "Snack": categoryTypeBuffer = .snack
+                    default: categoryTypeBuffer = .unknown
+                    }
+                    
                 }
-
                 
-                let recipeBuffer = RecipeModel(id: self.recipeCollection.count, categoryType: dictionary["categoryType"] as! CategoryType, name: dictionary["name"] as! String, text: dictionary["text"] as! String)
-                
-                self.recipeCollection.append(recipeBuffer)
-                print(self.recipeCollection.count)
+                if let imagePath = dictionary["imageUrl"] as? String {
+                    imagePathBuffer = URL(string: imagePath)!
+                    
+                    let recipeBuffer = RecipeModel(id: self.recipeCollection.count, categoryType: categoryTypeBuffer, name: dictionary["name"] as! String, text: dictionary["text"] as! String, imageURL: imagePathBuffer)
+                    
+                    self.recipeCollection.append(recipeBuffer)
+                    self.tableView.reloadData()
+                }
                 
             }
             
             
         })
-        
-            let recipe = RecipeModel(id: self.recipeCollection.count, categoryType: .breakfast, name: "Gröt", text: "1 dl havregryn, 2 dl vatten")
-            let recipe2 = RecipeModel(id: self.recipeCollection.count, categoryType: .lunch, name: "Kycklingsallad", text: "1 dl havregryn, 2 dl vatten")
-            let recipe3 = RecipeModel(id: self.recipeCollection.count, categoryType: .dinner, name: "Tacos", text: "1 dl havregryn, 2 dl vatten")
-            let recipe4 = RecipeModel(id: self.recipeCollection.count, categoryType: .dessert, name: "Ostbågar", text: "1 dl havregryn, 2 dl vatten")
-            let recipe5 = RecipeModel(id: self.recipeCollection.count, categoryType: .drinks, name: "Kiss", text: "1 dl havregryn, 2 dl vatten")
-            let recipe6 = RecipeModel(id: self.recipeCollection.count, categoryType: .snack, name: "Chokladbollar", text: "1 dl havregryn, 2 dl vatten")
-        let recipe7 = RecipeModel(id: self.recipeCollection.count, categoryType: .snack, name: "Chokladbollar", text: "1 dl havregryn, 2 dl vatten")
-
-        
-        self.recipeCollection.append(recipe)
-        self.recipeCollection.append(recipe2)
-        self.recipeCollection.append(recipe3)
-        self.recipeCollection.append(recipe4)
-        self.recipeCollection.append(recipe5)
-        self.recipeCollection.append(recipe6)
-        self.recipeCollection.append(recipe7)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +90,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -126,6 +117,21 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = recipe.name
+        
+        let recipeImageUrl = recipe.imageURL
+        
+        if let url = NSURL(string: recipeImageUrl) {
+            
+            URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+                
+                if error != nil {
+                    print(error)
+                    return
+                }
+                
+                cell.imageView?.image = UIImage(data: data!)
+            })
+        }
         
         return cell
     }
