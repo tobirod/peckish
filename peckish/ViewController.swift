@@ -37,8 +37,9 @@ class ViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 let categoryTypeBuffer: CategoryType
+                let categoryTypeBuffers = dictionary["categoryType"] as! String
                 
-                switch dictionary["categoryType"] {
+                switch categoryTypeBuffers {
                     case "Breakfast": categoryTypeBuffer = .breakfast
                     case "Lunch": categoryTypeBuffer = .lunch
                     case "Dinner": categoryTypeBuffer = .dinner
