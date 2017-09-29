@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+
+    var databaseRef: DatabaseReference?
+    var storageRef: StorageReference?
+    
+    var databaseHandle: DatabaseHandle?
     
     var recipeCollection: [RecipeModel] = []
 
@@ -21,6 +29,34 @@ class ViewController: UIViewController {
         self.tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
+        
+        databaseRef = Database.database().reference()
+        
+        databaseHandle = databaseRef?.child("recipe").observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                
+                let categoryTypeBuffer: CategoryType
+                
+                switch dictionary["categoryType"] {
+                    case "Breakfast": categoryTypeBuffer = .breakfast
+                    case "Lunch": categoryTypeBuffer = .lunch
+                    case "Dinner": categoryTypeBuffer = .dinner
+                    case "Dessert": categoryTypeBuffer = .dessert
+                    case "Drink": categoryTypeBuffer = .drinks
+                    case "Snack": categoryTypeBuffer = .snack
+                }
+
+                
+                let recipeBuffer = RecipeModel(id: self.recipeCollection.count, categoryType: dictionary["categoryType"] as! CategoryType, name: dictionary["name"] as! String, text: dictionary["text"] as! String)
+                
+                self.recipeCollection.append(recipeBuffer)
+                print(self.recipeCollection.count)
+                
+            }
+            
+            
+        })
         
             let recipe = RecipeModel(id: self.recipeCollection.count, categoryType: .breakfast, name: "Gröt", text: "1 dl havregryn, 2 dl vatten")
             let recipe2 = RecipeModel(id: self.recipeCollection.count, categoryType: .lunch, name: "Kycklingsallad", text: "1 dl havregryn, 2 dl vatten")

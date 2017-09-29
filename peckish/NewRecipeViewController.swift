@@ -76,21 +76,6 @@ class NewRecipeViewController: UIViewController {
     
     func dismissKeyboard() {
         
-//        if selectedCategory != "" {
-//            
-//            switch selectedCategory {
-//            case "Breakfast" : categoryBuffer = ".breakfast"
-//            case "Lunch" : categoryBuffer = ".lunch"
-//            case "Dinner" : categoryBuffer = ".dinner"
-//            case "Dessert" : categoryBuffer = ".dessert"
-//            case "Snack" : categoryBuffer = ".snack"
-//            case "Drink" : categoryBuffer = ".drink"
-//                
-//            default : selectedCategory = "unavailable"
-//            }
-//            
-//        }
-        
         view.endEditing(true)
     }
     
@@ -102,45 +87,85 @@ class NewRecipeViewController: UIViewController {
     
     @IBAction func addRecipeButtonPressed(_ sender: Any) {
         
-        // Upload content of imageView
+        uploadHandler()
         
-        databaseRef = Database.database().reference()
-        storageRef = Storage.storage().reference().child("recipe_images/" + recipeNameTextField.text!)
+    }
+    
+    func uploadHandler() {
         
+        let categoryType = self.selectedCategory
+        let name = self.recipeNameTextField.text
+        let text = self.recipeTextView.text
         
         if let uploadData = UIImagePNGRepresentation(self.recipeImageView.image!) {
+            
+            databaseRef = Database.database().reference()
+            storageRef = Storage.storage().reference().child("recipe_images/" + categoryType + "_" + name!)
             
             let uploadMetadata = StorageMetadata()
             uploadMetadata.contentType = "image/png"
             
-            self.storageRef?.putData(uploadData, metadata: uploadMetadata, completion: { (metadata, error) in
-                if (error != nil) {
-                    print("I recieved an error! \(String(describing: error?.localizedDescription)))")
-                } else {
-                    print("Upload complete! Here's some metadata! \(String(describing: metadata))")
-                }
-            })
-        }
-        
-        // Upload recipe details as a NSDictionary
-        
-        if recipeNameTextField.text != "" {
-            
-            let recipeToDictionary: NSDictionary = [
+            let uploadTask = storageRef?.putData(uploadData, metadata: uploadMetadata) { (metadata, error) in guard let metadata = metadata else {
                 
-                "categoryType" : selectedCategory,
-                "name" : recipeNameTextField.text ?? "Unavailable",
-                "text" : recipeTextView.text
-            ]
+                print("I received an error!")
+                
+                return
+                }
+                
+                let imageURL = metadata.downloadURL()?.absoluteString
+                
+                // Upload recipe details as a NSDictionary
+                
+                if self.recipeNameTextField.text != "" {
+                    
+                    let recipeToDictionary: NSDictionary = [
+                        
+                        "categoryType" : categoryType,
+                        "name" : name ?? "Unavailable",
+                        "text" : text ?? "Unavailable",
+                        "imageUrl" : imageURL ?? "https://firebasestorage.googleapis.com/v0/b/peckish-ee4ec.appspot.com/o/recipe_images%2Fnopicadded.png?alt=media&token=339254eb-cad3-4a53-8289-e18abcfddf4e"
+                    ]
+                    
+                    self.databaseRef?.child("recipe").childByAutoId().setValue(recipeToDictionary)
+                    
+                }
+                
+            }
             
-            self.databaseRef?.child("recipe").childByAutoId().setValue(recipeToDictionary)
+            uploadTask?.observe(.progress) { snapshot in
+                let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
+                
+                print(percentComplete, " percent complete")
+                
+            }
             
+            uploadTask?.observe(.failure) { snapshot in
+                if let error = snapshot.error as NSError? {
+                    switch (StorageErrorCode(rawValue: error.code)!) {
+                    case .objectNotFound:
+                        print("No image to upload!")
+                    case .unauthorized:
+                        print("Unauthorized access to image!")
+                    case .cancelled:
+                        print("You canceled the upload.")
+                    case .unknown:
+                        print("An unknown error has occured")
+                        
+                    default:
+                        print("Something happened, and your upload didn't finish. Please try again!")
+                    }
+                }
+            }
+            
+            uploadTask?.observe(.success) { snapshot in
+                
+                print("Image uploaded successfully!")
+                self.dismiss(animated: true)            }
         }
         
-        self.dismiss(animated: true)
+        
+        
     }
-    
-    
 
 }
 
@@ -174,6 +199,8 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         } else {
             label = UILabel()
         }
+        
+        categoryTextField.text = "Breakfast"
         
         
         // Customization
