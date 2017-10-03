@@ -5,6 +5,7 @@ target 'peckish' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
-pod 'Firebase/Database’
+pod 'Firebase/Database'
+pod 'Kingfisher'
 
 end

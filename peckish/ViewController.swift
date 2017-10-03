@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import Kingfisher
 
 class ViewController: UIViewController {
     
@@ -66,6 +67,8 @@ class ViewController: UIViewController {
             
             
         })
+        
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,6 +91,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 7
@@ -117,21 +128,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = recipe.name
+        //let processor = RoundCornerImageProcessor(cornerRadius: 20)
         
-        let recipeImageUrl = recipe.imageURL
         
-        if let url = NSURL(string: recipeImageUrl) {
-            
-            URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
-                
-                if error != nil {
-                    print(error)
-                    return
-                }
-                
-                cell.imageView?.image = UIImage(data: data!)
-            })
-        }
+        let image = UIImage(named: "nopicadded")
+        
+        cell.imageView?.kf.setImage(with: recipe.imageURL, placeholder: image, options: [.transition(.fade(0.2))], progressBlock: nil, completionHandler: nil)
         
         return cell
     }
