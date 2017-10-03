@@ -6,6 +6,6 @@ target 'peckish' do
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 pod 'Firebase/Database'
-pod 'Kingfisher'
+pod 'Kingfisher', '~> 4.1.0'
 
 end

@@ -33,14 +33,16 @@ enum CategoryType: Int {
 class RecipeModel {
     
     var id: Int
+    var key: Any
     var categoryType: CategoryType
     var name: String
     var text: String
     var imageURL: URL
     
-    init(id: Int, categoryType: CategoryType, name: String, text: String, imageURL: URL) {
+    init(id: Int, key: Any, categoryType: CategoryType, name: String, text: String, imageURL: URL) {
         
         self.id = id
+        self.key = key
         self.categoryType = categoryType
         self.name = name
         self.text = text

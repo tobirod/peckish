@@ -21,17 +21,21 @@ class ViewController: UIViewController {
     
     var databaseHandle: DatabaseHandle?
     
+    var idEdit: Bool
+    
     var recipeCollection: [RecipeModel] = []
 
     override func viewDidLoad() {
+        
+        databaseRef = Database.database().reference()
+        storageRef = Storage.storage().reference()
+        
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
-        
-        databaseRef = Database.database().reference()
         
         databaseHandle = databaseRef?.child("recipe").observe(.childAdded, with: { (snapshot) in
             
@@ -57,15 +61,12 @@ class ViewController: UIViewController {
                 if let imagePath = dictionary["imageUrl"] as? String {
                     imagePathBuffer = URL(string: imagePath)!
                     
-                    let recipeBuffer = RecipeModel(id: self.recipeCollection.count, categoryType: categoryTypeBuffer, name: dictionary["name"] as! String, text: dictionary["text"] as! String, imageURL: imagePathBuffer)
+                    let recipeBuffer = RecipeModel(id: self.recipeCollection.count, key: dictionary["key"] as Any, categoryType: categoryTypeBuffer, name: dictionary["name"] as! String, text: dictionary["text"] as! String, imageURL: imagePathBuffer)
                     
                     self.recipeCollection.append(recipeBuffer)
                     self.tableView.reloadData()
                 }
-                
             }
-            
-            
         })
         
         tableView.allowsMultipleSelectionDuringEditing = true
@@ -73,6 +74,14 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let vc = segue.destination as? addNewRecipeSegue, let editRecipe = sender as? String {
+            vc.result = result
+        }
         
     }
     
@@ -98,6 +107,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
+        let recipe = self.fetchRecipeForIndexPath(indexPath: indexPath)
+        
+        databaseRef?.child("recipe").child(recipe.key as! String).removeValue()
+        
+        let imageKey = recipe.key as! String
+        let imageRef = Storage.storage().reference().child("recipe_images/" + imageKey)
+        
+        recipeCollection.remove(at: recipe.id)
+        imageRef.delete(completion: nil)
+        
+        tableView.reloadData()
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,7 +126,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // segue for edit
+        
+        self.performSegue(withIdentifier: "addNewRecipeSegue", sender: self.fetchRecipeForIndexPath(indexPath: indexPath))
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -128,11 +150,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = recipe.name
-        //let processor = RoundCornerImageProcessor(cornerRadius: 20)
-        
-        
         let image = UIImage(named: "nopicadded")
-        
         cell.imageView?.kf.setImage(with: recipe.imageURL, placeholder: image, options: [.transition(.fade(0.2))], progressBlock: nil, completionHandler: nil)
         
         return cell

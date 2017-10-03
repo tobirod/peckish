@@ -22,10 +22,16 @@ class NewRecipeViewController: UIViewController {
     
     var selectedCategory: String = ""
     
+    var recipeEdit: Bool
+    
     let recipeCategories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Snack", "Drink"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if recipeEdit == true {
+            print("Hej")
+        }
         
         createCategoryPicker()
         createPickerViewToolBar()
@@ -100,7 +106,9 @@ class NewRecipeViewController: UIViewController {
         if let uploadData = UIImagePNGRepresentation(self.recipeImageView.image!) {
             
             databaseRef = Database.database().reference()
-            storageRef = Storage.storage().reference().child("recipe_images/" + categoryType + "_" + name!)
+            let uploadKey = self.databaseRef?.child("recipe").childByAutoId().key as String?
+            
+            storageRef = Storage.storage().reference().child("recipe_images/" + uploadKey!)
             
             let uploadMetadata = StorageMetadata()
             uploadMetadata.contentType = "image/png"
@@ -120,13 +128,14 @@ class NewRecipeViewController: UIViewController {
                     
                     let recipeToDictionary: NSDictionary = [
                         
+                        "key" : uploadKey!,
                         "categoryType" : categoryType,
                         "name" : name ?? "Unavailable",
                         "text" : text ?? "Unavailable",
                         "imageUrl" : imageURL ?? "https://firebasestorage.googleapis.com/v0/b/peckish-ee4ec.appspot.com/o/recipe_images%2Fnopicadded.png?alt=media&token=339254eb-cad3-4a53-8289-e18abcfddf4e"
                     ]
                     
-                    self.databaseRef?.child("recipe").childByAutoId().setValue(recipeToDictionary)
+                    self.databaseRef?.child("recipe").child(uploadKey!).setValue(recipeToDictionary)
                     
                 }
                 
