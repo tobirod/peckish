@@ -37,13 +37,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="657"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="peckishlogo" translatesAutoresizingMaskIntoConstraints="NO" id="O1W-GK-lry">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="O1W-GK-lry" secondAttribute="height" multiplier="125:52" id="jLN-Vl-MpB"/>
+                                            <constraint firstAttribute="height" constant="100" id="tIT-bq-HRi"/>
                                         </constraints>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-75-pZt">
-                                        <rect key="frame" x="5" y="161" width="365" height="431"/>
+                                        <rect key="frame" x="5" y="105" width="365" height="487"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="vxX-r1-7bA">
@@ -87,9 +87,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="O1W-GK-lry" secondAttribute="trailing" id="Dss-O6-XFI"/>
                                     <constraint firstItem="5m7-ia-gF6" firstAttribute="top" secondItem="weg-75-pZt" secondAttribute="bottom" constant="5" id="Kjg-gy-Dh5"/>
+                                    <constraint firstItem="O1W-GK-lry" firstAttribute="leading" secondItem="xeg-J8-ZvV" secondAttribute="leading" id="M5T-XI-4Id"/>
                                     <constraint firstItem="weg-75-pZt" firstAttribute="leading" secondItem="xeg-J8-ZvV" secondAttribute="leading" constant="5" id="NwS-1s-Acf"/>
-                                    <constraint firstItem="weg-75-pZt" firstAttribute="top" secondItem="O1W-GK-lry" secondAttribute="bottom" constant="5" id="Tpf-OZ-bio"/>
+                                    <constraint firstItem="O1W-GK-lry" firstAttribute="top" secondItem="xeg-J8-ZvV" secondAttribute="top" id="wvf-Qx-XgV"/>
                                     <constraint firstAttribute="trailing" secondItem="weg-75-pZt" secondAttribute="trailing" constant="5" id="yPS-f6-iz7"/>
                                 </constraints>
                             </stackView>
@@ -115,7 +117,7 @@
         <!--New Recipe View Controller-->
         <scene sceneID="eWs-Fm-eyq">
             <objects>
-                <viewController id="CcB-7b-8c2" customClass="NewRecipeViewController" customModule="peckish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newRecipeViewController" id="CcB-7b-8c2" customClass="NewRecipeViewController" customModule="peckish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VsC-8n-0WB"/>
                         <viewControllerLayoutGuide type="bottom" id="tll-LH-Bat"/>
@@ -290,7 +292,7 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <state key="normal" title="Add recipe"/>
+                                                        <state key="normal" title="Save recipe"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="5.5"/>
@@ -343,6 +345,8 @@
                         <outlet property="recipeImageView" destination="6b1-8O-uWt" id="J2f-ge-7NT"/>
                         <outlet property="recipeNameTextField" destination="XAz-KN-QYz" id="8QI-6w-T8U"/>
                         <outlet property="recipeTextView" destination="DYg-cq-YPQ" id="N67-XH-2AV"/>
+                        <outlet property="saveImageButton" destination="g3M-tk-gHV" id="DDT-37-H3p"/>
+                        <outlet property="saveRecipeButton" destination="CtY-lL-yVo" id="DUw-9h-yG7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzO-iD-fTn" userLabel="First Responder" sceneMemberID="firstResponder"/>

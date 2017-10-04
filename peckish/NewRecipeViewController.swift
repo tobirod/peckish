@@ -16,27 +16,46 @@ class NewRecipeViewController: UIViewController {
     @IBOutlet weak var recipeImageView: RoundImageView!
     @IBOutlet weak var recipeNameTextField: RoundTextField!
     @IBOutlet weak var recipeTextView: RoundTextView!
+    @IBOutlet weak var saveRecipeButton: RoundButton!
+    @IBOutlet weak var saveImageButton: RoundButton!
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var updateRecipeDelegate: UpdateRecipeDelegate?
     
     var databaseRef: DatabaseReference?
     var storageRef: StorageReference?
     
     var selectedCategory: String = ""
     
-    var recipeEdit: Bool
+    var editRecipe: RecipeModel?
     
     let recipeCategories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Snack", "Drink"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if recipeEdit == true {
-            print("Hej")
+        // Only runs when editing a recipe - sets the edited recipe's values to their corresponding view
+        if editRecipe != nil{
+            
+            let category = editRecipe?.categoryType.description.capitalized
+            
+            categoryTextField.text = category!
+            selectedCategory = category!
+            
+            let image = UIImage(named: "nopicadded")
+            recipeImageView.kf.setImage(with: editRecipe?.imageURL, placeholder: image, options: [.transition(.fade(0.2))], progressBlock: nil, completionHandler: nil)
+            recipeImageView.alpha = 1
+            
+            recipeNameTextField.text = editRecipe?.name
+            recipeTextView.text = editRecipe?.text
+            
+            saveImageButton.setTitle("Change image", for: .normal)
+            
         }
         
+        // Pretty selfexplanatory, creates the pickers used for choosing category
         createCategoryPicker()
         createPickerViewToolBar()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +88,7 @@ class NewRecipeViewController: UIViewController {
 
         
         if let font = UIFont(name: "American Typewriter", size: 20.0) {
-            let attributes = [NSFontAttributeName: font]
+            let attributes = [NSAttributedStringKey.font: font]
             doneButton.setTitleTextAttributes(attributes, for: .normal)
         }
         
@@ -80,24 +99,56 @@ class NewRecipeViewController: UIViewController {
         
     }
     
-    func dismissKeyboard() {
+    // Dismisses the software keyboard
+    @objc func dismissKeyboard() {
         
         view.endEditing(true)
     }
     
+    // Dismisses the popover viewcontroller and returns to the main viewcontroller
     @IBAction func cancelButtonPressed(_ sender: Any) {
         
         self.dismiss(animated: true)
         
     }
     
+    // Runs when button is pressed, starts the process of uploading new recipe to Firebase
     @IBAction func addRecipeButtonPressed(_ sender: Any) {
         
         uploadHandler()
         
     }
     
+    // First starts the activityIndicator, showing the user the app is busy
+    // Also deactivates all user interaction during upload
     func uploadHandler() {
+        
+        databaseRef = Database.database().reference()
+        storageRef = Storage.storage().reference()
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        // Runs if saving an edit - basically removes the old entry and saves everything again
+        if editRecipe != nil {
+            
+            databaseRef!.child("recipe").child(editRecipe!.key).removeValue()
+            
+            let imageKey = editRecipe?.key
+            let imageRef = storageRef?.child("recipe_images/" + imageKey!)
+            
+            imageRef?.delete(completion: {(error) in
+                print(error?.localizedDescription as Any)
+                
+                self.updateRecipeDelegate?.removeRecipe(recipe: self.editRecipe)
+            })
+        }
         
         let categoryType = self.selectedCategory
         let name = self.recipeNameTextField.text
@@ -105,7 +156,6 @@ class NewRecipeViewController: UIViewController {
         
         if let uploadData = UIImagePNGRepresentation(self.recipeImageView.image!) {
             
-            databaseRef = Database.database().reference()
             let uploadKey = self.databaseRef?.child("recipe").childByAutoId().key as String?
             
             storageRef = Storage.storage().reference().child("recipe_images/" + uploadKey!)
@@ -141,6 +191,7 @@ class NewRecipeViewController: UIViewController {
                 
             }
             
+            // Tracks the upload progress and print it out in console
             uploadTask?.observe(.progress) { snapshot in
                 let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
                 
@@ -148,6 +199,7 @@ class NewRecipeViewController: UIViewController {
                 
             }
             
+            // Checks upload for failure and reports it in console
             uploadTask?.observe(.failure) { snapshot in
                 if let error = snapshot.error as NSError? {
                     switch (StorageErrorCode(rawValue: error.code)!) {
@@ -166,9 +218,15 @@ class NewRecipeViewController: UIViewController {
                 }
             }
             
+            // Basically a completion block for the upload
             uploadTask?.observe(.success) { snapshot in
                 
                 print("Image uploaded successfully!")
+                
+                self.activityIndicator.stopAnimating()
+                
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
                 self.dismiss(animated: true)            }
         }
         
@@ -248,7 +306,7 @@ extension NewRecipeViewController: UINavigationControllerDelegate, UIImagePicker
             recipeImageView.image = image
             recipeImageView.alpha = 1
         } else {
-            // Error message
+            print("Something went wrong! Send help!")
         }
         
         self.dismiss(animated: true, completion: nil)

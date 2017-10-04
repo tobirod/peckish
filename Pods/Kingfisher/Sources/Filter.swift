@@ -74,7 +74,7 @@ public struct Filter {
             #if swift(>=4.0)
             return filter.outputImage?.cropped(to: input.extent)
             #else
-            return filter.outputImage?.cropping(to: input.extent)
+            return filter.outputImage?.cropped(to: input.extent)
             #endif
         }
     }
@@ -94,8 +94,8 @@ public struct Filter {
             let blackAndWhite = input.applyingFilter("CIColorControls", parameters: paramsColor)
             return blackAndWhite.applyingFilter("CIExposureAdjust", parameters: paramsExposure)
             #else
-            let blackAndWhite = input.applyingFilter("CIColorControls", withInputParameters: paramsColor)
-            return blackAndWhite.applyingFilter("CIExposureAdjust", withInputParameters: paramsExposure)
+            let blackAndWhite = input.applyingFilter("CIColorControls", parameters: paramsColor)
+            return blackAndWhite.applyingFilter("CIExposureAdjust", parameters: paramsExposure)
             #endif
         }
         
